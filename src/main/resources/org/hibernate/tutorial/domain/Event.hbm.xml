@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="org.hibernate.tutorial.domain">
-    <class name="Event" table="EVENTS">
+    <class name="Event" table="EVENT">
         <id name="id" column="EVENT_ID">
             <generator class="native"/>
         </id>
