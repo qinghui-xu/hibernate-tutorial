@@ -46,7 +46,7 @@ public class EventManager {
         try {
             return session.createQuery("from Event").list();
         } finally {
-            session.getTransaction().commit();
+            session.getTransaction().rollback();
         }
     }
 
