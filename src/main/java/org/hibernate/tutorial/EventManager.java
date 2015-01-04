@@ -9,7 +9,7 @@ import org.hibernate.tutorial.domain.Person;
 import org.hibernate.tutorial.util.HibernateUtil;
 
 /**
- * Type «EventManager».
+ * Type ï¿½EventManagerï¿½.
  */
 public class EventManager {
 
@@ -24,11 +24,19 @@ public class EventManager {
                 Event theEvent = events.get(i);
                 System.out.println("Event: " + theEvent.getTitle() + " Time: " + theEvent.getDate());
             }
-        } else if (args[0].equals("addpersontoevent")) {
+            List<Person> personList = mgr.listPeople();
+            for (Person person : personList) {
+                System.out.println("Person: " + person.getId());
+            }
+        } else if (args[0].equals("create_person_with_event")) {
             Long eventId = mgr.createAndStoreEvent("Event to associate", new Date());
             Long personId = mgr.createAndStorePerson("Foo", "Bar", 18);
             mgr.addPersonToEvent(personId, eventId);
             System.out.println("Added person " + personId + " to event " + eventId);
+        } else if (args[0].equals("add_event_to_person")) {
+            Long personId = Long.valueOf(args[1]);
+            Long eventId = Long.valueOf(args[2]);
+            mgr.addPersonToEvent(personId, eventId);
         }
 
         HibernateUtil.getSessionFactory().close();
@@ -94,6 +102,16 @@ public class EventManager {
         } finally {
             session.getTransaction().rollback();
         }
+    }
+
+    private List<Person> listPeople() {
+        Session session = openSession();
+        try {
+            return session.createQuery("from Person").list();
+        } finally {
+            closeSession(session);
+        }
+
     }
 
     private static Session openSession() {
