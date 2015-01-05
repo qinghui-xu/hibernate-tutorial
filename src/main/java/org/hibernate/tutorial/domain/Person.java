@@ -13,6 +13,7 @@ public class Person {
     private int age;
 
     private Set<Event> events;
+    private Set<String> emailAddresses;
 
     /**
      * @return «id» value.
@@ -92,6 +93,22 @@ public class Person {
      */
     public void setEvents(Set<Event> events) {
         this.events = events;
+    }
+
+    /**
+     * @return «emailAddresses» value.
+     */
+    public Set<String> getEmailAddresses() {
+        return emailAddresses;
+    }
+
+    /**
+     * Set «emailAddresses».
+     * 
+     * @param emailAddresses new value of «emailAddresses».
+     */
+    public void setEmailAddresses(Set<String> emailAddresses) {
+        this.emailAddresses = emailAddresses;
     }
 
 }

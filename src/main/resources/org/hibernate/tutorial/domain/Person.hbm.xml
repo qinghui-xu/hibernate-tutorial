@@ -16,5 +16,10 @@
             <key column="PERSON_ID"/>
             <many-to-many column="EVENT_ID" class="Event"/>
         </set>
+        
+        <set name="emailAddresses" table="PERSON_EMAIL_ADDRESS">
+            <key column="PERSON_ID"/>
+            <element type="string" column="EMAIL_ADDRESS"/>
+        </set>
     </class>
 </hibernate-mapping>
