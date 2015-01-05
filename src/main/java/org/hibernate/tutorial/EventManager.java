@@ -37,6 +37,9 @@ public class EventManager {
             Long personId = Long.valueOf(args[1]);
             Long eventId = Long.valueOf(args[2]);
             mgr.addPersonToEvent(personId, eventId);
+        } else if (args[0].equals("add_email_to_person")) {
+            Long personId = Long.valueOf(args[1]);
+            mgr.addEmailToPerson(personId, args[2]);
         }
 
         HibernateUtil.getSessionFactory().close();
@@ -111,7 +114,16 @@ public class EventManager {
         } finally {
             closeSession(session);
         }
+    }
 
+    private void addEmailToPerson(Long personId, String emailAddress) {
+        Session session = openSession();
+        try {
+            Person person = (Person) session.load(Person.class, personId);
+            person.getEmailAddresses().add(emailAddress);
+        } finally {
+            closeSession(session);
+        }
     }
 
     private static Session openSession() {
