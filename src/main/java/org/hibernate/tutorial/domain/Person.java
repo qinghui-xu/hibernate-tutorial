@@ -104,7 +104,7 @@ public class Person {
 
     /**
      * Set «emailAddresses».
-     * 
+     *
      * @param emailAddresses new value of «emailAddresses».
      */
     public void setEmailAddresses(Set<String> emailAddresses) {
