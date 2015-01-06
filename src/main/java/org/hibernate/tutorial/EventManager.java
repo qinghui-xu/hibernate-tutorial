@@ -47,7 +47,7 @@ public class EventManager {
         }
     }
 
-    private Long createAndStoreEvent(String title, Date theDate) {
+    public Long createAndStoreEvent(String title, Date theDate) {
         Event event = newEvent(title, theDate);
 
         Session session = openSession();
@@ -67,7 +67,7 @@ public class EventManager {
         return event;
     }
 
-    private Long createAndStorePerson(String firstname, String lastname, int age) {
+    public Long createAndStorePerson(String firstname, String lastname, int age) {
         Person person = newPerson(firstname, lastname, age);
 
         Session session = openSession();
@@ -88,7 +88,7 @@ public class EventManager {
         return person;
     }
 
-    private void addPersonToEvent(Long personId, Long eventId) {
+    public void addPersonToEvent(Long personId, Long eventId) {
         Session session = openSession();
         try {
             // eager fetch events with a joncture.
@@ -102,7 +102,7 @@ public class EventManager {
         }
     }
 
-    private void addPersonToEvent2(Long personId, Long eventId) {
+    public void addPersonToEvent2(Long personId, Long eventId) {
         Session session = openSession();
         Person person = null;
         Event event = null;
@@ -124,7 +124,7 @@ public class EventManager {
         }
     }
 
-    private void addPersonToEvent3(Long personId, Long eventId) {
+    public void addPersonToEvent3(Long personId, Long eventId) {
         Session session = openSession();
         Person person = null;
         Event event = null;
@@ -150,7 +150,7 @@ public class EventManager {
         }
     }
 
-    private List<Event> listEvents() {
+    public List<Event> listEvents() {
         Session session = openSession();
         try {
             return session.createQuery("from Event").list();
@@ -159,7 +159,7 @@ public class EventManager {
         }
     }
 
-    private List<Person> listPeople() {
+    public List<Person> listPeople() {
         Session session = openSession();
         try {
             return session.createQuery("from Person").list();
@@ -168,7 +168,7 @@ public class EventManager {
         }
     }
 
-    private void addEmailToPerson(Long personId, String emailAddress) {
+    public void addEmailToPerson(Long personId, String emailAddress) {
         Session session = openSession();
         try {
             Person person = (Person) session.load(Person.class, personId);
@@ -186,7 +186,7 @@ public class EventManager {
     }
 
     private static void closeSession(Session session) {
-        if (session.isOpen()) {
+        if (session != null && session.isOpen()) {
             session.getTransaction().rollback();
         }
     }
