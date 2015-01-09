@@ -3,6 +3,8 @@ package org.hibernate.tutorial;
 import java.util.Date;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.hibernate.Session;
 import org.hibernate.tutorial.domain.Event;
 import org.hibernate.tutorial.domain.Person;
@@ -181,6 +183,8 @@ public class EventManager {
 
     private static Session openSession() {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        DataSource source;
+
         session.beginTransaction();
         return session;
     }

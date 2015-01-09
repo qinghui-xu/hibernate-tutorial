@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.tutorial.EventManager;
 import org.hibernate.tutorial.domain.Event;
+import org.hibernate.tutorial.util.HibernateUtil;
 import org.hibernate.tutorial.util.StringUtil;
 
 public class EventManagerServlet extends HttpServlet {
@@ -72,6 +73,11 @@ public class EventManagerServlet extends HttpServlet {
         out.println("Date (e.g. 24.12.2009): <input name='eventDate' length='10'/><br/>");
         out.println("<input type='submit' name='action' value='store'/>");
         out.println("</form>");
+    }
+
+    public void destory() {
+        HibernateUtil.getSessionFactory().close();
+        super.destroy();
     }
 
 }
