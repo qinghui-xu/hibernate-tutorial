@@ -21,7 +21,7 @@
         <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
+            <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
 
